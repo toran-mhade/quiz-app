@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+         rel="stylesheet"
+         />
+      <title>Quiz Time</title>
+      <link rel="stylesheet" href="copystyle.css" />
+      <link rel="shortcut icon" href="images/quiz-time-favicon.ico" type="image/x-icon">
+      <script src="copyScript.js" defer></script>
+   </head>
+   <body>
+      <main class="home">
+         <div class="home-content">
+            <img class="home-logo" src="images/quiz-time-logo.svg" alt="" />
+            <div class="buttons-container">
+               <div class="resume-button main-button clickable">
+                  <div class="main-button-layer-1">
+                     <div class="main-button-layer-2">
+                        <span class="main-button-text">Resume >>></span>
+                     </div>
+                  </div>
+               </div>
+               <div class="start-button main-button clickable">
+                  <div class="main-button-layer-1">
+                     <div class="main-button-layer-2">
+                        <span class="main-button-text start-button-text"
+                           >Start Now >>></span
+                           >
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="scores">
+               <span class="highest-score-text">Highest Score: 20/25</span>
+            </div>
+         </div>
+         <div class="quiz-content">
+            <header>
+               <img
+                  class="logo"
+                  src="images/quiz-time-logo.svg"
+                  alt="quiz time logo"
+                  />
+               <div class="speaker-and-question-number">
+                <div class="volume-icon clickable volume-open">
+                  <img class="icon-volume-open" src="images/icon-volume-open.svg" alt="volume icon">
+                  <img class="icon-volume-mute" src="images/icon-volume-mute.svg" alt="volume icon">
+                </div>
+                  <div class="question-number-div">
+                     <span class="current-question-number"></span>
+                  </div>
+               </div>
+            </header>
+            <div class="question">
+               <span class="question-text"></span>
+               <div class="question-bg-layer-1"></div>
+               <div class="question-bg-layer-2"></div>
+            </div>
+            <div class="timer-div">
+              <span class="timer-span">
+                <span class="fixer-time">00</span>:<span class="timer">30</span>
+              </span>
+               <div class="timer-bg-layer-1"></div>
+               <div class="timer-bg-layer-2"></div>
+            </div>
+            <div class="answers">
+               <div class="answers-bg-layer-1"></div>
+               <div class="answers-bg-layer-2"></div>
+               <div class="answer-container clickable" id="option1">
+                  <span class="answer-text" id="option1-text"></span>
+                  <div class="answer-remarks-container">
+                     <div class="wrong-icon">
+                        <span>You chose</span>
+                        <img src="images/wrong.svg" alt="wrong icon" />
+                     </div>
+                     <div class="black-correct-icon">
+                        <span>Time's Up</span>
+                        <img src="images/black-correct.svg" alt="correct icon" />
+                     </div>
+                     <div class="correct-icon">
+                        <img src="images/correct.svg" alt="correct icon" />
+                     </div>
+                  </div>
+               </div>
+               <div class="answer-container clickable" id="option2">
+                  <span class="answer-text" id="option2-text"></span>
+                  <div class="answer-remarks-container">
+                     <div class="wrong-icon">
+                        <span>You chose</span>
+                        <img src="images/wrong.svg" alt="wrong icon" />
+                     </div>
+                     <div class="black-correct-icon">
+                        <span>Time's Up</span>
+                        <img src="images/black-correct.svg" alt="correct icon" />
+                     </div>
+                     <div class="correct-icon">
+                        <img src="images/correct.svg" alt="correct icon" />
+                     </div>
+                  </div>
+               </div>
+               <div class="answer-container clickable" id="option3">
+                  <span class="answer-text" id="option3-text"></span>
+                  <div class="answer-remarks-container">
+                     <div class="wrong-icon">
+                        <span>You chose</span>
+                        <img src="images/wrong.svg" alt="wrong icon" />
+                     </div>
+                     <div class="black-correct-icon">
+                        <span>Time's Up</span>
+                        <img src="images/black-correct.svg" alt="correct icon" />
+                     </div>
+                     <div class="correct-icon">
+                        <img src="images/correct.svg" alt="correct icon" />
+                     </div>
+                  </div>
+               </div>
+               <div class="answer-container clickable" id="option4">
+                  <span class="answer-text" id="option4-text"></span>
+                  <div class="answer-remarks-container">
+                     <div class="wrong-icon">
+                        <span>You chose</span>
+                        <img src="images/wrong.svg" alt="wrong icon" />
+                     </div>
+                     <div class="black-correct-icon">
+                        <span>Time's Up</span>
+                        <img src="images/black-correct.svg" alt="correct icon" />
+                     </div>
+                     <div class="correct-icon">
+                        <img src="images/correct.svg" alt="correct icon" />
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <span class="next-button clickable">Next ></span>
+         </div>
+         <div class="result-content">
+            <div class="result-heading">
+               <img src="images/quiz-time-logo.svg" alt="" class="result-logo" />
+               <div class="result-heading-text">Result</div>
+            </div>
+            <div class="result-graph-div">
+               <div class="result-graph-linear-div">
+                  <div class="pointer-setup-container correct-pointer-setup-container">
+                     <div class="pointer-container correct-pointer-container">
+                        <div class="pointer-vertical-line correct-pointer-part"></div>
+                        <div class="pointer-horizontal-line correct-pointer-part"></div>
+                        <div class="pointer-dot correct-pointer-part"></div>
+                     </div>
+                     <span class="percentage-text correct-percentage-text">77%</span>
+                  </div>
+                  <div class="linear-graph-and-last-score">
+                     <div class="linear-graph-bg-red-div">
+                        <div class="linear-graph-fg-green-div"></div>
+                     </div>
+                     <div class="last-score-linear-graph-text"></div>
+                  </div>
+                  <div class="pointer-setup-container wrong-pointer-setup-container">
+                     <div class="pointer-container wrong-pointer-container">
+                        <div class="pointer-vertical-line wrong-pointer-part"></div>
+                        <div class="pointer-horizontal-line wrong-pointer-part"></div>
+                        <div class="pointer-dot wrong-pointer-part"></div>
+                     </div>
+                     <span class="percentage-text wrong-percentage-text">23%</span>
+                  </div>
+               </div>
+               <div class="result-graph-circular-div"></div>
+            </div>
+            <span class="marks-text"></span>
+            <div class="result-motivational-quote">
+               “Keep learning, you have a good score!”
+            </div>
+            <div class="retry-and-home-button-div">
+              <div class="retry-button main-button clickable">
+               <div class="main-button-layer-1">
+                  <div class="main-button-layer-2">
+                     <span class="main-button-text resume-button-text"><<< Retry</span>
+                  </div>
+               </div>
+              </div>
+              <img src="images/home-icon.svg" alt="" class="home-button clickable">
+            </div>
+            <div class="share-result-div">
+              <span class="share-result-text">Share your score:</span>
+              <div class="share-score-icons">
+                <img class="share-score-icon clickable" src="images/linkedin-icon.svg" alt="" class="linkedin-icon clickable">
+                <img class="share-score-icon clickable" src="images/twitter-icon.svg" alt="" class="twitter-icon clickable">
+                <img class="share-score-icon clickable" src="images/insta-icon.svg" alt="" class="insta-icon clickable">
+              </div>
+            </div>
+         </div>
+         <span class="credits-text">Made with ❤️ by Saleem Ullah</span>
+      </main>
+   </body>
+</html>
