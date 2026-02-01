@@ -1,6 +1,6 @@
 
 # Quiz App
-
+_Last updated:Feb 2026_
 A simple quiz application built using HTML, CSS, and JavaScript.
 
 ## Features
