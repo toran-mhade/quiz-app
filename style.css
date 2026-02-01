@@ -475,43 +475,53 @@ flex-direction: column;
 }
 
 .green-mark{
-  /* border: 1px solid; */
-  /* width: 100px; */
+  /* border: 1px solid black; */
+  width: 100px;
   position: absolute;
-  /* top: 250px; */
-  bottom: 0;
-  left: 10px;
+  left: -5px;
+  bottom: 0px;
  
 }
 
 .gree-mark-sign{
- width: 50px;
-  height: 50px;
+ width: 70px;
+  height: 75px;
+  /* border: 1px solid black; */
+}
+
+.red-marks-sign{
+position: absolute;
+top: 0px;
+right: 0px;
 }
 .red-mark{
   /* border: 1px solid; */
   position: absolute;
-right: 22px;
+right: 2px;
 top: 40px;
+  /* border: 1px solid black; */
+height: 70%;
+width: 50%;
 }
 
 .green-marks-number{
 /* border: 1px solid; */
-position: relative;
-bottom: 10px;
+position: absolute;
+bottom: -20px;
 left: -10px;
 }
 
 .red-marks-number{
   /* border: 1px solid; */
-  position: relative;
-  right: -38px;
-bottom: 10px;
+  position: absolute;
+  right: -18px;
+bottom: 35px;
 
 }
 .state-three-result-circle-div-main-container{
   /* border: 1px solid ; */
   margin-top: 100px;
+  /* width: 100; */
 padding:  0px 40px;
 position: relative;
 }

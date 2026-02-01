@@ -29,7 +29,9 @@ let audioOnBtn = document.querySelector("#volume-btn");
 
 let audioOffBtn = document.querySelector("#volume-mute");
 
-let audioPlay = document.querySelector(".audioPlayer");
+let audioPlayRight = document.querySelector(".audioPlayer");
+
+let audioPlayWrong = document.querySelector(".wrongAnsAudio");
 
 let startbtnInnerText = document.querySelector(".stateOne-startBtn-innerText");
 
@@ -39,36 +41,81 @@ let scoreUpdate = document.querySelector(".scoreUpdate");
 
 let restartBtn = document.querySelector(".restartBtn");
 
+
+// state three starts here
+
+let resultAns = document.querySelector(".state-three-result-index");
+
+let greenMark = document.querySelector(".green-marks-number");
+
+let mainContainerColor = document.querySelector(".circle-div-container");
+
+let redMark = document.querySelector(".red-marks-number");
+
+let greenContainer = document.querySelector(".green-container");
+
+let redContainer = document.querySelector(".red-container");
+
+let resultTagLine = document.querySelector(".state-three-last-greetin-p");
+
+let retryBtn = document.querySelector(".state-three-retry-btn");
+
+// state three selectors ended
+
 // let rightImg = document.querySelector(".correct-img");
 
-let currentRightAns = Number(localStorage.getItem("currentRightAns"));
+let currentRightAns = Number(localStorage.getItem("currentRight"));
 
-console.log(currentRightAns);
- let rightAnsCount = 0;
+// console.log(currentRightAns);
+ let rightAnsCount = Number(localStorage.getItem("mainResult"));
+// console.log(rightAnsCount);
 
-let bestScore = localStorage.getItem("freshRightScore") || 0;
-// console.log(bestScore);
 
-let check = localStorage.getItem("check") 
-console.log(check);
+let check = localStorage.getItem("check") || null
+// console.log(check);
 
-if (check === null) {
+let stateThreeReload = null
+
+if (check !== null) {
+  scoreCard.style.display = "block"
+}else{
   scoreCard.style.display = "none"
 }
 
-scoreUpdate.textContent = bestScore;
+let startBtnNameChange = localStorage.getItem("startBtn") || null;
+// console.log(startBtnNameChange);
+
+if (startBtnNameChange !== null) {
+  startbtnInnerText.textContent = "Restart >>>"
+  localStorage.removeItem("startBtn");
+}
 
 
 
 
-// scoreCard.classList.add("activeScore");
+let validTime = localStorage.getItem("resultTime")
 
-let state = "stateOne"
+// console.log( validTime);
+
+
+scoreUpdate.textContent = Number(localStorage.getItem("mainResult"));
+
+if (validTime !== null) {
+  // console.log("h");
+  
+  scoreUpdate.textContent = Number(localStorage.getItem("mainResult"));
+}
+
+let resultInGreen = 0;
+    
+    let state = localStorage.getItem("state") || "stateOne";
 
   render();
 
-  let restartStatus = localStorage.getItem("restartStatus")
-  if (restartStatus === "progress") {
+  let restartStatus = sessionStorage.getItem("restartStatus") 
+  // console.log(restartStatus);
+  
+  if (restartStatus !== null) {
     restartBtn.style.display = "block"
     
   }else{
@@ -78,7 +125,11 @@ let state = "stateOne"
 
 let nxtBtnClick =  0;
 let indexDisplay =  1;
+
 // query selectors end here
+    // stateOne.classList.add("activeOne");
+    // stateTwo.classList.add("activeOne");
+    // stateThree.classList.remove("activeOne");
 
 
 // state management
@@ -93,7 +144,7 @@ function render() {
     stateTwo.classList.remove("activeOne");
   } else if (state === "stateThree") {
     stateThree.classList.remove("activeOne");
-stateThreeFn(rightAnsCount)
+stateThreeFn(Number(localStorage.getItem("currentRight")));
   }
 
 
@@ -114,12 +165,14 @@ function startQuiz() {
 }
 
 function retryFn() {
-  // console.log("retry");
-  
-  state = "stateOne";
-  render();
-  localStorage.setItem("state",state)
+  location.reload();
 
+  // console.log("retry");
+  state = "stateOne";
+  
+  localStorage.setItem("state","stateOne")
+  render();
+localStorage.setItem("startBtn","restart")
   nxtBtnClick = 0;
   // console.log(nxtBtnClick);
 
@@ -140,7 +193,7 @@ stateOneStartBtn.addEventListener("click",()=>{
   // localStorage.removeItem("state")
   // localStorage.removeItem("resultScore")
   localStorage.removeItem("indexDisplay")
-  localStorage.setItem("restartStatus", "progress");
+  sessionStorage.setItem("restartStatus", "progress");
   startQuiz();
 })
 
@@ -363,7 +416,7 @@ function timerFn() {
     }
     //  console.log("true hai");
      if (option.textContent === questions[nxtBtnClick].correct) {
-       console.log(questions[nxtBtnClick].correct);
+      //  console.log(questions[nxtBtnClick].correct);
 
        option.parentElement.style.border = "1px solid grey";
      }
@@ -463,7 +516,7 @@ let currentOpt = null
     // console.log(element.textContent);
 
     element.addEventListener("click", () => {
-      console.log("cli");
+      // console.log("cli");
 if (timerId !== null) {
   clearInterval(timerId);
   timeOut.innerHTML = time;
@@ -489,13 +542,22 @@ if (timerId !== null) {
 
       if (rightAns === element.textContent) {
         currentRightAns++
-        console.log(currentRightAns);
+        // console.log(currentRightAns);
      
         if (audio) {
-          audioPlay.play();
+          audioPlayRight.pause();
+          audioPlayRight.currentTime = 0;
+          audioPlayRight.play();
         }
         element.parentElement.children[2].classList.remove("display-icon-div");
       } else {
+
+  if (audio) {
+    audioPlayWrong.pause();
+    audioPlayWrong.currentTime = 0;
+    audioPlayWrong.play();
+  }
+
         element.parentElement.children[1].classList.remove("display-icon-div");
 
         AllOptionsBox.forEach((opt) => {
@@ -513,7 +575,6 @@ if (timerId !== null) {
 if (indexDisplay > 24) {
   indexDisplay = 1
 }
-let resultInGreen = 0;
 
 function customisedIndexDisplay(indexDisplay) {
     if(indexDisplay < 1){
@@ -526,13 +587,19 @@ function customisedIndexDisplay(indexDisplay) {
     //  console.log(false);
    }
 }
+// localStorage.removeItem("currentRight");
 
 nextBtn.addEventListener("click",()=>{
-   localStorage.setItem("currentRightAns", currentRightAns);
+  //  console.log(`${currentRightAns}, currentRightAns`);
+
+  //  console.log(`${rightAnsCount}, rightAnsCount`);
+
+   
   timeOut = false
 
   if (nxtBtnClick === 24) {
     state = "stateThree";
+    localStorage.setItem("state", "stateThree");
     // rightWrongIcons()
     render();
     // questionIndex = 0
@@ -540,28 +607,38 @@ nextBtn.addEventListener("click",()=>{
     timerFn();
     indexDisplay = 0;
     nxtBtnClick = 0;
-  let freshRightScore = Number(localStorage.getItem("currentRightAns"));
-     rightAnsCount = freshRightScore
+      //  console.log(`${currentRightAns}, currentRightAns`);
 
-console.log(rightAnsCount);
-bestScore = freshRightScore
-// scoreUpdate.textContent = bestScore
-// localStorage.setItem("bestScore",freshRightScore)
-if (bestScore < freshRightScore) {
- localStorage.setItem("bestScore",freshRightScore)
- 
+      //  console.log(`${rightAnsCount}, rightAnsCount`);
+// console.log(currentRightAns);
+if (currentRightAns > rightAnsCount ) {
+rightAnsCount = currentRightAns;
+localStorage.setItem("mainResult", rightAnsCount);
 }
+localStorage.setItem("resultTime","succeed")
+localStorage.setItem("check", "attempted");
 
 
-localStorage.removeItem("currentRightAns")
+if (validTime !== null) {
+  // console.log("h");
+
+  scoreUpdate.textContent = Number(localStorage.getItem("mainResult"));
+}
+// console.log(rightAnsCount);
+
+// localStorage.removeItem("currentRight");
+stateThreeFn(currentRightAns);
     updateQuestionFN(nxtBtnClick);
-    stateThreeFn(rightAnsCount);
+    // console.log(rightAnsCount);
+
+    
     localStorage.setItem("rightAnsCheck","true")
 
-    localStorage.removeItem("restartStatus");
+    sessionStorage.removeItem("restartStatus");
 
     // return
   }
+ localStorage.setItem("currentRight", currentRightAns);
 
 
 indexDisplay++
@@ -616,23 +693,10 @@ rightWrongIcons()
 })
 
 
-// state three starts here
 
-let resultAns = document.querySelector(".state-three-result-index");
+  redContainer.classList.remove("activeTwo");
 
-let greenMark = document.querySelector(".green-marks-number");
-
-let mainContainerColor = document.querySelector(".circle-div-container");
-
-let redMark = document.querySelector(".red-marks-number");
-
-let greenContainer = document.querySelector(".green-container");
-
-let redContainer = document.querySelector(".red-container");
-
-let resultTagLine = document.querySelector(".state-three-last-greetin-p");
-
-let retryBtn = document.querySelector(".state-three-retry-btn");
+  greenContainer.classList.remove("activeTwo");
 
 function stateThreeFn(rightAnsCount) {
 
@@ -640,13 +704,18 @@ function stateThreeFn(rightAnsCount) {
 // console.log(state);
 
 // localStorage.setItem("resultScore",rightAnsCount)
+stateThreeReload = "stateThreeReloaded"
 
+// if (stateThreeReload !== null) {
+//   state = "stateThree";
+//   render()
+// }
 
   resultInGreen = rightAnsCount
-  console.log(resultInGreen);
+  // console.log(resultInGreen);
   
-let percentage = Math.floor((resultInGreen / 25) * 100);
-// console.log(resultInGreen);
+let percentage = Number(Math.floor((resultInGreen / 25) * 100));
+// console.log( percentage);
 let redResult = 100 - percentage;
 // console.log(redResult);
 redMark.textContent = `${redResult}%`;
@@ -662,7 +731,9 @@ conic-gradient(
 // resultAns.textContent = percentage
 // console.log(resultAns.textContent);
 if (percentage <= 0) {
-  greenContainer.classList.add("activeTwo");
+  // console.log("right its 0");
+  
+  // greenContainer.classList.add("activeTwo");
 } else if (percentage <= 40) {
   mainContainerColor.style.background = `
 conic-gradient(
@@ -673,7 +744,7 @@ conic-gradient(
   mainContainerColor.style.background = `
 conic-gradient(
     from 110deg,
-    rgba(53, 189, 58, 1) 0% ${percentage}%, rgba(255, 122, 122, 1) ${percentage}% ${redResult}% 
+    rgba(53, 189, 58, 1) 0% ${percentage}%, rgba(255, 122, 122, 1) ${percentage}% ${redResult}%  
   )`;
 } else if (percentage > 75 && percentage <= 96) {
   mainContainerColor.style.background = `
@@ -712,6 +783,5 @@ if (percentage <= 20) {
 
 retryBtn.addEventListener("click", () => {
   retryFn();
-localStorage.setItem(check, "check");
-
+  // currentRightAns = 0
 });
