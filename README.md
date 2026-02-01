@@ -1,26 +1,26 @@
-#Quiz App
 
-This is an  simple quiz app. 
+# Quiz App
 
-#Features 
-1. all time highest score appears on first page
-2. quiz layout changes colour when time decreases
-3. right/wrong ans gives respective reaction n audio response
-4. result in percentage after quiz completion
+A simple quiz application built using HTML, CSS, and JavaScript.
 
-#tech stack 
-1. HTML
-2. CSS
-3. JavaScript
+## Features
+- All-time highest score appears on the first page  
+- Quiz layout changes color when time decreases  
+- Right/wrong answers give visual and audio feedback  
+- Result shown in percentage after quiz completion  
 
-#live demo 
+## Tech Stack
+- HTML  
+- CSS  
+- JavaScript  
+
+## Live Demo
 <https://basicquizappfrontend.netlify.app/>
 
-#status 
-completed
+## Status
+Completed
 
-#Remaining work
-
-1. make dynamic with api fetch questions ans Data
-2. result sharable through social media apps
-3. dynamic leaderboard with user name 
+## Remaining Work
+- Make quiz dynamic using API-fetched questions and answers  
+- Result sharing through social media apps  
+- Dynamic leaderboard with user names
